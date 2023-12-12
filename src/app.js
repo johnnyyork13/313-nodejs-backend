@@ -1,10 +1,7 @@
 const express = require('express');
 const functions = require('firebase-functions');
 const cors = require('cors');
-const session = require('express-session');
 const mongoose = require('mongoose');
-const MongoStore = require('connect-mongo')(session);
-const passport = require('passport');
 
 require('dotenv').config();
 
@@ -22,31 +19,8 @@ const router = require('./routes/routes');
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-// const sessionStore = new MongoStore({mongooseConnection: db, collection: 'sessions'});
-
-// app.use((req, res, next) => {
-//     console.log(req);
-//     next();
-// })
-
-// app.use(session({
-//     secret: 'database',
-//     resave: false,
-//     saveUninitialized: true,
-//     store: sessionStore,
-//     cookie: {
-//         maxAge: 100 * 60 * 60 * 24
-//     }
-// }))
-
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-
 const options = {
-    origin: 'http://localhost:5173',
-    // origin: 'https://johnnyyork13.github.io',
-    // credentials: true,
+    origin: 'https://johnnyyork13.github.io',
 }
 
 app.options('*', cors(options));

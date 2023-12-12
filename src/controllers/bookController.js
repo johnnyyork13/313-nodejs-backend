@@ -1,9 +1,19 @@
 const BookSchema = require('../models/book');
 
-//books/all
-exports.get_all_books = async(req, res, next) => {
+//books/all/glance
+exports.get_all_books_glance = async(req, res, next) => {
     try {
         const bookList = await BookSchema.find({}).limit(12).exec();
+        res.json({bookList: bookList});
+    } catch(err) {
+        next(err, null);
+    }
+}
+
+//books/all/my-books
+exports.get_all_books_my_books = async(req, res, next) => {
+    try {
+        const bookList = await BookSchema.find({}).exec();
         res.json({bookList: bookList});
     } catch(err) {
         next(err, null);
@@ -41,14 +51,13 @@ exports.post_by_filter = async(req, res, next) => {
 //books/add
 exports.post_add_book = async(req, res, next) => {
     try {
-        console.log('posted book');
         const authors = req.body.author.split(",");
         const book = new BookSchema({
             isbn: req.body.isbn,
             title: req.body.title,
             author: authors,
             publisher: req.body.publisher,
-            year: req.body.year,
+            year: Number(req.body.year),
             added: new Date(),
         })
         await book.save();

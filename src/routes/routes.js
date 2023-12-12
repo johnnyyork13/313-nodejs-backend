@@ -3,7 +3,8 @@ const router = express.Router();
 const bookController = require('../controllers/bookController');
 
 //get requests for books
-router.get('/books/all', bookController.get_all_books);
+router.get('/books/all/glance', bookController.get_all_books_glance);
+router.get('/books/all/my-books', bookController.get_all_books_my_books);
 router.get('/books/recent', bookController.get_recent_books);
 router.get('/books/get/:id', bookController.get_book_by_id);
 router.get('/book/delete/:id', bookController.get_delete_book);
