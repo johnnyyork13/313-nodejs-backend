@@ -1,0 +1,38 @@
+{
+  "name": "313-nodejs-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "deploy": "firebase deploy --only functions"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnnyyork13/313-nodejs-backend.git"
+  },
+  "keywords": [],
+  "author": "Johnny York",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnnyyork13/313-nodejs-backend/issues"
+  },
+  "homepage": "https://github.com/johnnyyork13/313-nodejs-backend#readme",
+  "dependencies": {
+    "async-handler": "^0.0.3",
+    "connect-mongo": "^3.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^4.5.0",
+    "mongoose": "^8.0.3",
+    "nodemon": "^3.0.2",
+    "passport": "^0.7.0"
+  },
+  "engines": {
+    "node": "16"
+  }
+}
