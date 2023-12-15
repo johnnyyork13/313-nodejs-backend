@@ -34,7 +34,7 @@ exports.get_book_by_id = async(req, res, next) => {
         const book = await BookSchema.findOne({_id: req.params.id}).exec();
         res.json({book: book});
     } catch(err) {  
-        console.log(err);
+        next(err, null)
     }
 }
 
@@ -43,6 +43,7 @@ exports.post_by_filter = async(req, res, next) => {
     try {
         const bookList = await BookSchema.find({[req.body.filter]: req.body.keywords}).exec();
         res.json({bookList: bookList});
+        console.log(bookList);
     } catch(err) {
         next(err, null);
     }
@@ -52,10 +53,11 @@ exports.post_by_filter = async(req, res, next) => {
 exports.post_add_book = async(req, res, next) => {
     try {
         const authors = req.body.author.split(",");
+        const trimAuthors = authors.map((author) => author.trim());
         const book = new BookSchema({
             isbn: req.body.isbn,
             title: req.body.title,
-            author: authors,
+            author: trimAuthors,
             publisher: req.body.publisher,
             year: Number(req.body.year),
             added: new Date(),
